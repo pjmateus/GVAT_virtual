@@ -107,6 +107,8 @@ The expected structure is:
 │   ├── lat        # station latitude
 │   ├── alt        # station height
 │   └── num        # internal station number/index
+|   └── azimuth    # Azimuth angle
+|   └── elevation  # Elevation angle
 │
 ├── /<SITE_2>/
 │   ├── dt
@@ -115,6 +117,8 @@ The expected structure is:
 │   ├── lat
 │   ├── alt
 │   └── num
+|   └── azimuth
+|   └── elevation 
 │
 └── ...
 ```
@@ -133,6 +137,8 @@ In the file produced by the `saveH5file` script, the main datasets and data type
 /<SITE>/lat             single, scalar
 /<SITE>/alt             single, scalar
 /<SITE>/num             single, scalar
+/<SITE>/azimuth         single, scalar
+/<SITE>/elevation       single, scalar
 ```
 
 Here, `<SITE>` is the GNSS station code, `n` is the number of observations/epochs, and `m` is the number of columns used by the internal observation format. The station codes are also stored in `/information/sites`, allowing GVAT to automatically loop through all available stations in the HDF5 file.
