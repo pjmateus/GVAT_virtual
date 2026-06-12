@@ -195,3 +195,12 @@ For questions, please contact:
 **Pedro Mateus**
 Instituto Dom Luiz / Faculdade de Ciências da Universidade de Lisboa
 E-mail: `pjmateus@ciencias.ulisboa.pt`
+
+---
+<p align="center">
+  <img src="figures/GVAT_hong_kong_2024_08.png" alt="GVAT virtual-ray" width="750">
+</p>
+
+<p align="center">
+  <em>Figure 1. Hovmoller diagram comparing vertical water vapor density profiles from GNSS tomography and radiosondes over Hong Kong. The top panel shows tomographic \(\rho_v\) sampled along the radiosonde column, and the bottom panel shows the corresponding radiosonde-derived \(\rho_v\). Both panels use the same color scale, with \(\rho_v\) in g m\(^{-3}\), height in km, and time along the x-axis.</em>
+</p>
