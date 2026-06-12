@@ -197,6 +197,9 @@ Instituto Dom Luiz / Faculdade de Ciências da Universidade de Lisboa
 E-mail: `pjmateus@ciencias.ulisboa.pt`
 
 ---
+
+## Expected Results from the Data Provided in This Repository
+
 <p align="center">
   <img src="figures/GVAT_hong_kong_2024_08.png" alt="GVAT virtual-ray" width="550">
 </p>
