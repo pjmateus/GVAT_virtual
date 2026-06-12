@@ -102,7 +102,7 @@ The expected structure is:
 │
 ├── /<SITE_1>/
 │   ├── dt         # observation time matrix, stored as uint64
-│   ├── siwv       # slant precipitable water vapor, stored as single precision
+│   ├── spwv       # slant precipitable water vapor, stored as single precision
 │   ├── lon        # station longitude
 │   ├── lat        # station latitude
 │   ├── alt        # station height
@@ -110,7 +110,7 @@ The expected structure is:
 │
 ├── /<SITE_2>/
 │   ├── dt
-│   ├── siwv
+│   ├── spwv
 │   ├── lon
 │   ├── lat
 │   ├── alt
@@ -119,7 +119,7 @@ The expected structure is:
 └── ...
 ```
 
-For each station, the `/dt/` and `/siwv/` datasets must have exactly the same dimensions, so that each slant water vapor value is associated with the corresponding time entry. The `/lon/`, `/lat/`, `/alt/`, and `/num/` datasets are scalar values that define the station position and its internal identifier.
+For each station, the `/dt/` and `/spwv/` datasets must have exactly the same dimensions, so that each slant water vapor value is associated with the corresponding time entry. The `/lon/`, `/lat/`, `/alt/`, and `/num/` datasets are scalar values that define the station position and its internal identifier.
 
 In the file produced by the `saveH5file` script, the main datasets and data types are:
 
@@ -128,7 +128,7 @@ In the file produced by the `saveH5file` script, the main datasets and data type
 /information/numbers    double, dimensions [n_sites, 1]
 
 /<SITE>/dt              uint64, dimensions [n, m]
-/<SITE>/siwv            single, dimensions [n, m]
+/<SITE>/spwv            single, dimensions [n, m]
 /<SITE>/lon             single, scalar
 /<SITE>/lat             single, scalar
 /<SITE>/alt             single, scalar
