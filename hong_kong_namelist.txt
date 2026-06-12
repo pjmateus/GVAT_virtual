@@ -1,0 +1,66 @@
+experiment = 'hong_kong'  ! name of experiment 
+saveSOLUTION = 0          ! save solution (in solutions/) or not 
+version = '1'             ! for output name
+
+! min and max temporal range (format: yyyy, mm, dd, HH, MM, SS)
+d1 = datenum(2024, 8, 1, 0, 0, 0);
+d2 = datenum(2024, 9, 1, 0, 0, 0);
+
+avoid_neg = 1              ! avoid negatives with nnls   
+accy = 1                   ! accuracy of nnls (0 to 2)
+
+                           ! apply Matlab's quadprog function to find the inverse of the system with restrictions
+quadratic_optimization = 1 ! if = 1, apply restriction  x>=0 (if avoid_neg = 1)                          
+
+! Assimilation time
+assimilationTIME = 60      ! minutes (180 para HK)
+                           ! example, assimilationTIME = 30, => 10:45 to 11:15 (for 11h)
+minEL = 3                  ! minimum elevation angle for virtual rays (deg.)
+minOBSel = 4               ! minimum (observed) elevation angle to be used in the fit (deg.)          
+
+! Hv source
+hv_source = 'rs'           ! 'const' or 'rs' for read from a txt file
+hv_value = 2000            ! only if hv_source = 'const';
+runRStimes = 1             ! do not change, process only when there is a radiosonde observation
+
+! Creation of virtual rays
+! This is done for all observations read from the H5 file or text files (to maintain compatibility with published data)
+! Order: [1:voxelsWALL, 2:fixAZandELcycle, 3:centerOFallVOXELS, 4:riseRAYSinSOMEvoxels, 5:centerOFVOXELSrayMINnum, 6:centerOFVOXELSrayMINnumV2]
+! for details see virtual_rays.m
+method = [0, 0, 1, 0, 0, 0]
+
+! Outliers
+outliers = 1   ! Checking for outliers
+minIWV = 1     ! kg/m^2, approximate min. value for the IWV (zenith) in the region of the tomographic domain  
+maxIWV = 90    ! kg/m^2, approximate max. value for the IWV (zenith) in the region of the tomographic domain  
+
+! Small adjustments
+wallRAYSexitAJUST = 10 ! m (small adjustment to the altitude of the rays when they intercept the wall, has an impact on the transition between the 1st and 2nd level) 
+                       ! positive values decrease the gradient (inc. distance is lower)
+
+! Verbose
+verbose = 1
+atSITElevel = 0        ! lots of information
+atINSTANTlevel = 1     ! inversion time info only here
+
+! More specific options
+delRAYSlessDIST = 0       ! removes rays less than a certain distance (from the wall, in meters)
+                          ! good for removing low rays from stations very close to the wall
+                          ! set to zero (0) to turn off
+delRAYSmoreDIST = 300000  ! remove rays with distances greater than a certain value (in meters)
+                          ! set to a large number (300000) to turn off, depending on the size of the domain
+
+! GRID, the graph created by infoH5file.m shows the minimum and maximum coordinates of all the sites
+!       also with a printout for the terminal (units: km, for resVx, resVy; meter for resVz)
+x0 = 113.968883 
+y0 = 22.109960
+rot = 25
+numVx = 9
+numVy = 6
+resVx = 6000
+resVy = 6000 
+resVz = [1000, zeros(1,9)+1000]
+
+! Delete any site here (activate plot in infoH5file.m and remove sites by their name, column format)
+!site2exc = ['TCHK']
+site2exc = []
