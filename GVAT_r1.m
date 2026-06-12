@@ -418,7 +418,6 @@ disp(['... all done in ',num2str(tEnd0/60, '%.2f'),' min '])
 
 if saveSOLUTION
     % validation data
-    rmseRS(idxnan) = []; biasRS(idxnan) = []; corrRS(idxnan) = [];
     TOMOdata.rmseRS  = rmseRS;  TOMOdata.biasRS  = biasRS;  TOMOdata.corrRS  = corrRS;
     
     FNversion = ['_minEL',num2str(minEL,'%02i'),'_a',num2str(assimilationTIME,'%02i'),'min_x',num2str(numVx,'%02i'),'y',num2str(numVy,'%02i'),...
