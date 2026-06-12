@@ -87,34 +87,61 @@ The repository is currently intended for users familiar with:
 
 ---
 
-## Repository structure
+## Input HDF5 file structure
 
-A typical structure of the repository is:
+GVAT expects the GNSS slant water vapor observations to be provided in an HDF5 file organized by station. The file contains a global information group, `/information/`, and one individual group for each GNSS station, identified by its 4-character station code.
+
+The expected structure is:
 
 ```text
-GVAT_virtual/
+/input_file.h5
 │
-├── README.md
-├── LICENSE
-├── CITATION.cff
+├── /information/
+│   ├── sites      # list of station codes, stored as numeric character codes
+│   └── numbers    # station number/index associated with each station
 │
-├── src/                  # Core GVAT routines
-├── config/               # Configuration files for experiments
-├── scripts/              # Main scripts for running the workflow
-├── examples/             # Example configuration and test workflow
-├── data/                 # Placeholder or small example data only
-├── output/               # Generated outputs, not tracked by default
-├── figures/              # Example figures or plotting routines
-└── docs/                 # Additional documentation
+├── /<SITE_1>/
+│   ├── dt         # observation time matrix, stored as uint64
+│   ├── siwv       # slant precipitable water vapor, stored as single precision
+│   ├── lon        # station longitude
+│   ├── lat        # station latitude
+│   ├── alt        # station height
+│   └── num        # internal station number/index
+│
+├── /<SITE_2>/
+│   ├── dt
+│   ├── siwv
+│   ├── lon
+│   ├── lat
+│   ├── alt
+│   └── num
+│
+└── ...
 ```
 
-The exact structure may change as the code is cleaned and prepared for long-term release.
+For each station, the `/dt/` and `/siwv/` datasets must have exactly the same dimensions, so that each slant water vapor value is associated with the corresponding time entry. The `/lon/`, `/lat/`, `/alt/`, and `/num/` datasets are scalar values that define the station position and its internal identifier.
+
+In the file produced by the `saveH5file` script, the main datasets and data types are:
+
+```text
+/information/sites      double, dimensions [n_sites, 4]
+/information/numbers    double, dimensions [n_sites, 1]
+
+/<SITE>/dt              uint64, dimensions [n, m]
+/<SITE>/siwv            single, dimensions [n, m]
+/<SITE>/lon             single, scalar
+/<SITE>/lat             single, scalar
+/<SITE>/alt             single, scalar
+/<SITE>/num             single, scalar
+```
+
+Here, `<SITE>` is the GNSS station code, `n` is the number of observations/epochs, and `m` is the number of columns used by the internal observation format. The station codes are also stored in `/information/sites`, allowing GVAT to automatically loop through all available stations in the HDF5 file.
 
 ---
 
 ## Requirements
 
-The code requires a scientific MATLAB environment and standard geospatial and numerical libraries. The exact dependency list should be checked in the repository files.
+The code requires a scientific MATLAB environment. The exact dependency list should be checked in the repository files.
 
 ---
 
@@ -123,7 +150,7 @@ The code requires a scientific MATLAB environment and standard geospatial and nu
 For MATLAB-based execution:
 
 ```matlab
-run('scripts/run_gvat_virtual.m')
+run('scripts/GVAT_r1.m')
 ```
 ---
 
@@ -163,4 +190,4 @@ For questions, please contact:
 
 **Pedro Mateus**
 Instituto Dom Luiz / Faculdade de Ciências da Universidade de Lisboa
-GitHub: `pjmateus@ciencias.ulisboa.pt`
+E-mail: `pjmateus@ciencias.ulisboa.pt`
