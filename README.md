@@ -168,8 +168,6 @@ https://doi.org/10.1029/2021GL094852
 
 Please also cite the relevant follow-up papers listed in the **Scientific background** section, depending on which workflow components are used.
 
-A formal software citation and DOI will be added when the repository is archived in a long-term repository such as Zenodo.
-
 ---
 
 ## Licence
