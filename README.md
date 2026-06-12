@@ -207,3 +207,11 @@ E-mail: `pjmateus@ciencias.ulisboa.pt`
 <p align="center">
   <em>Figure 1. Hovmoller diagram comparing vertical water vapor density profiles from GNSS tomography and radiosondes over Hong Kong. The top panel shows tomographic water vapor density (rho_v) sampled along the radiosonde column, and the bottom panel shows the corresponding radiosonde-derived water vapor density. Both panels use the same color scale, with rho_v in g m^-3, height in km, and time along the x-axis.</em>
 </p>
+
+# Third-party notices
+
+| File | Original source | Original author | License | Notes |
+|---|---|---|---|---|
+| `triangleRayIntersection.m` | MATLAB Central File Exchange / MATLAB forum | Jaroslaw Tuszynski, Copyright (c) 2018 | BSD 2-Clause | Auxiliary ray-triangle intersection routine |
+| `readhgt.m` | MATLAB Central File Exchange / MATLAB forum | François Beauducel, Copyright (c) 2021 | BSD 2-Clause | SRTM/HGT reader |
+| `nnls.m` | MATLAB Central File Exchange / MATLAB forum | Bill Whiten, Copyright (c) 2023 | BSD 2-Clause | Non-negative least-squares solver |
