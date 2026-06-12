@@ -5,8 +5,8 @@
 %
 clear; close all; clc
 
-basePATH = 'C:\codex\gvat_github';
-namelistFILE = 'hong_kong_namelist.txt';
+basePATH = 'C:\codex\gvat_github';        % <--- switch the base of a path here
+namelistFILE = 'hong_kong_namelist.txt';  % <--- main configuration file
 % Enable diagnostic plots. Use with care because many figures can be opened at once.
 plt = 0;
 
@@ -417,13 +417,6 @@ disp(['... all done in ',num2str(tEnd0/60, '%.2f'),' min '])
 % ************************************ END CORE
 
 if saveSOLUTION
-    % Remove NaN entries.
-    idx = find(~isnan(TOMOdata.rmse)); 
-    idxnan = find(isnan(TOMOdata.rmse));
-    TOMOdata = structfun(@(x) x(idx,:),TOMOdata,'Un',0);
-    FIXdata.times(idxnan,:) = [];
-    FIXdata.rtimes(idxnan) = [];
-    if exist('pwv_rs', 'var'), pwv_rs(idxnan,:) = []; TOMOdata.pwv_rs = pwv_rs; end 
     % validation data
     rmseRS(idxnan) = []; biasRS(idxnan) = []; corrRS(idxnan) = [];
     TOMOdata.rmseRS  = rmseRS;  TOMOdata.biasRS  = biasRS;  TOMOdata.corrRS  = corrRS;
